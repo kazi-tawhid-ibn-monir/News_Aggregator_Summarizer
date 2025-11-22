@@ -50,7 +50,7 @@ This project aggregates news articles from various sources and provides users wi
 - F-4.2: Generate AI-based summary in real-time
 - F-4.3: Display original article and AI summary side by side
 
-### F-5: News Submission Page (Md. Biplop Hossain)
+### F-5: News Submission Page (Md. Biplob Hossain)
 - F-5.1: Authenticated form for users to submit news articles
 - F-5.2: Review and store submitted news in database
 - F-5.3: Authentication required for news submission
