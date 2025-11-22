@@ -1,59 +1,56 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Intelligent News Aggregator and Summarizer
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A web-based news aggregation platform built with Laravel that collects, displays, and summarizes news from multiple sources using AI technology.
 
-## About Laravel
+## Project Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project aggregates news articles from various sources and provides users with:
+- Latest local and international news
+- AI-powered article summarization
+- User news submission functionality
+- Search and filtering capabilities
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Technology Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Frontend:** HTML, CSS, JavaScript  
+**Backend:** Laravel (PHP Framework)  
+**Database:** MySQL  
+**IDE:** VS Code  
+**Version Control:** GitHub
 
-## Learning Laravel
+## Team Members & Task Distribution
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+| Name | ID | Work/Task |
+|------|-------|-----------|
+| Kazi Tawhid Ibn Monir | 0242220005101251 | F-1 (F-1.1, F-1.2, F-1.3) |
+| Md Sijib | 0242220005101032 | F-2 (F-2.1, F-2.2, F-2.3) |
+| Sheak Rakibur Rahman Rahat | 0242220005101498 | F-3 (F-3.1, F-3.2, F-3.3) |
+| Maherun Nesa Mila | 0242220005101111 | F-4 (F-4.1, F-4.2, F-4.3) |
+| Md. Biplop Hossain | 0242220005101450 | F-5 (F-5.1, F-5.2, F-5.3) |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Functional Requirements
 
-## Laravel Sponsors
+### F-1: Homepage (Kazi Tawhid Ibn Monir)
+- F-1.1: Display latest and top news headlines from multiple sources
+- F-1.2: Provide navigation links to all major pages
+- F-1.3: Responsive grid/list layout for news display
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### F-2: Local News Page (Md Sijib)
+- F-2.1: Aggregate and display local news articles
+- F-2.2: Full article view with headlines, summaries, and source attribution
+- F-2.3: Filter by topic or date
 
-### Premium Partners
+### F-3: International News Page (Sheak Rakibur Rahman Rahat)
+- F-3.1: Aggregate and display international news articles
+- F-3.2: Browse headlines and summaries with full article links
+- F-3.3: Filter by region or topic
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### F-4: AI Summarizer Page (Maherun Nesa Mila)
+- F-4.1: Text input for article or article link
+- F-4.2: Generate AI-based summary in real-time
+- F-4.3: Display original article and AI summary side by side
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### F-5: News Submission Page (Md. Biplop Hossain)
+- F-5.1: Authenticated form for users to submit news articles
+- F-5.2: Review and store submitted news in database
+- F-5.3: Authentication required for news submission
