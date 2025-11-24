@@ -1,0 +1,8 @@
+@extends('layouts.app')
+@section('title', 'News Submission')
+@section('content')
+    <div class="container">
+        <h1>News Submission</h1>
+        <p>Latest news from your country and region.</p>
+    </div>
+@endsection
