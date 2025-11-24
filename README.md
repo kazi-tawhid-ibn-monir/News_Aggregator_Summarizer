@@ -26,7 +26,7 @@ This project aggregates news articles from various sources and provides users wi
 | Md Sijib | 0242220005101032 | F-2 (F-2.1, F-2.2, F-2.3) |
 | Sheak Rakibur Rahman Rahat | 0242220005101498 | F-3 (F-3.1, F-3.2, F-3.3) |
 | Maherun Nesa Mila | 0242220005101111 | F-4 (F-4.1, F-4.2, F-4.3) |
-| Md. Biplop Hossain | 0242220005101450 | F-5 (F-5.1, F-5.2, F-5.3) |
+| Md. Biplob Hossain | 0242220005101450 | F-5 (F-5.1, F-5.2, F-5.3) |
 
 ## Functional Requirements
 
@@ -50,7 +50,7 @@ This project aggregates news articles from various sources and provides users wi
 - F-4.2: Generate AI-based summary in real-time
 - F-4.3: Display original article and AI summary side by side
 
-### F-5: News Submission Page (Md. Biplop Hossain)
+### F-5: News Submission Page (Md. Biplob Hossain)
 - F-5.1: Authenticated form for users to submit news articles
 - F-5.2: Review and store submitted news in database
 - F-5.3: Authentication required for news submission
