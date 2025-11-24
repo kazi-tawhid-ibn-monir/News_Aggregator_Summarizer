@@ -1,5 +1,5 @@
 <header style="background: linear-gradient(90deg,#667eea 0%,#764ba2 100%); padding: 20px;">
-    <nav style="display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:auto;">
+    <nav style="display:flex;justify-content:space-between;align-items:center;width:100%;">
         <a href="{{ route('home') }}" style="color:white;font-size:1.8em;font-weight:bold;text-decoration:none;">📰 News Aggregator</a>
         <ul style="list-style:none;display:flex;gap:24px;margin:0;padding:0;">
             <li>

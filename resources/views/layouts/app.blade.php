@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
-<body style="min-height:100vh; background:#f3f4f6;">
+<body style="margin:0;padding:0;min-height:100vh;background:#f3f4f6;">
     @include('partials.header')
-    <main style="padding:40px;">
+    <main style="padding:0;">
         @yield('content')
     </main>
     @include('partials.footer')
