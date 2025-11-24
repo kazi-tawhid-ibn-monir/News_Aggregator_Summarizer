@@ -29,3 +29,46 @@ nav ul li a:hover {
     .container {padding:20px;}
     nav ul {flex-direction:column;gap:12px;}
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+    
+    header nav ul {
+        flex-direction: column !important;
+        gap: 12px !important;
+        text-align: center;
+    }
+    
+    /* Featured section two-column to single column */
+    div[style*="grid-template-columns:1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Hero section padding */
+    div[style*="padding:48px"] {
+        padding: 24px !important;
+    }
+    
+    h1 {
+        font-size: 1.8em !important;
+    }
+    
+    h2 {
+        font-size: 1.4em !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 16px !important;
+    }
+    
+    /* Make news cards full width on small screens */
+    div[style*="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))"] {
+        grid-template-columns: 1fr !important;
+    }
+}
