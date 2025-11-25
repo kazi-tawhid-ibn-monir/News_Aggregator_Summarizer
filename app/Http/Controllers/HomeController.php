@@ -29,4 +29,10 @@ class HomeController extends Controller
         
         return view('pages.home', compact('newsItems'));
     }
+    public function show($id)
+    {
+        $news = News::findOrFail($id);
+        return view('pages.news-detail', compact('news'));
+    }
+  
 }

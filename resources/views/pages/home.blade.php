@@ -2,7 +2,8 @@
 @section('title', 'Home')
 
 @section('content')
-<div style="width:100%;padding:10 40px;margin:auto;">
+<div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+
     <!-- Hero/Featured Section -->
     <div style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:16px;padding:48px;color:white;text-align:center;margin-bottom:40px;">
         <h1 style="font-size:2.5em;margin-bottom:16px;">Welcome to Intelligent News Aggregator</h1>
@@ -60,20 +61,22 @@
     <!-- Latest Headlines News Grid -->
     <h2 style="color:#667eea;margin-bottom:24px;font-size:1.8em;">📌 Latest Headlines</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-bottom:40px;">
-        @forelse ($newsItems as $news)
-            <div style="background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(102,126,234,0.1);padding:20px;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;" 
-                 onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 16px rgba(102,126,234,0.2)';" 
-                 onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 2px 8px rgba(102,126,234,0.1)';">
-                <h3 style="color:#667eea;margin-bottom:12px;font-size:1.1em;">{{ $news->title }}</h3>
-                <div style="font-size:0.95em;color:#10b981;margin-bottom:8px;">
-                    <strong>{{ $news->category }}</strong>
+        @forelse ($newsItems as $item)
+            <a href="{{ route('news.show', $item->id) }}" style="text-decoration:none;display:block;">
+                <div style="background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(102,126,234,0.1);padding:20px;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;" 
+                     onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 16px rgba(102,126,234,0.2)';" 
+                     onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 2px 8px rgba(102,126,234,0.1)';">
+                    <h3 style="color:#667eea;margin-bottom:12px;font-size:1.1em;">{{ $item->title }}</h3>
+                    <div style="font-size:0.95em;color:#10b981;margin-bottom:8px;">
+                        <strong>{{ $item->category }}</strong>
+                    </div>
+                    <p style="color:#666;margin-bottom:12px;line-height:1.5;">{{ $item->excerpt }}</p>
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <span style="font-size:0.9em;color:#888;">{{ $item->source }}</span>
+                        <span style="font-size:0.85em;color:#aaa;">{{ $item->published_at->diffForHumans() }}</span>
+                    </div>
                 </div>
-                <p style="color:#666;margin-bottom:12px;line-height:1.5;">{{ $news->excerpt }}</p>
-                <div style="display:flex;justify-content:space-between;align-items:center;">
-                    <span style="font-size:0.9em;color:#888;">{{ $news->source }}</span>
-                    <span style="font-size:0.85em;color:#aaa;">{{ $news->published_at->diffForHumans() }}</span>
-                </div>
-            </div>
+            </a>
         @empty
             <div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">
                 @if(request('search'))

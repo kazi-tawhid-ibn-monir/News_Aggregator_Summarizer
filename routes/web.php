@@ -19,3 +19,5 @@ Route::get('/summarizer', function () {
 Route::get('/news-submission', function () {
     return view('pages.news-submission');
 })->name('news-submission');
+
+Route::get('/news/{id}', [HomeController::class, 'show'])->name('news.show');
