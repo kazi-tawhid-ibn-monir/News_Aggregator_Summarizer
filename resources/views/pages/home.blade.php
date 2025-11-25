@@ -2,63 +2,87 @@
 @section('title', 'Home')
 
 @section('content')
-    <div style="width:100%;padding:0;">
-    <!-- Hero/Featured Section - Full Width -->
-    <div style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:64px 40px;color:white;text-align:center;">
-        <div style="max-width:900px;margin:auto;">
-            <h1 style="font-size:2.8em;margin-bottom:16px;font-weight:700;">Welcome to Intelligent News Aggregator</h1>
-            <p style="font-size:1.3em;margin-bottom:28px;opacity:0.95;">Stay informed with the latest local and international news, powered by AI</p>
-            <a href="{{ route('summarizer') }}" style="background:#10b981;color:white;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;font-size:1.1em;">
-                Try AI Summarizer →
-            </a>
-        </div>
+<div style="width:100%;padding:10 40px;margin:auto;">
+    <!-- Hero/Featured Section -->
+    <div style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:16px;padding:48px;color:white;text-align:center;margin-bottom:40px;">
+        <h1 style="font-size:2.5em;margin-bottom:16px;">Welcome to Intelligent News Aggregator</h1>
+        <p style="font-size:1.2em;margin-bottom:24px;">Stay informed with the latest local and international news, powered by AI</p>
+        <a href="{{ route('summarizer') }}" style="background:#10b981;color:white;padding:15px 35px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;">
+            Try AI Summarizer →
+        </a>
     </div>
 
-    <!-- Main Content Container -->
-    <div style="max-width:1400px;margin:auto;padding:40px 40px;">
-        
-        <!-- Featured News -->
-        <div style="background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(102,126,234,0.15);padding:40px;margin-bottom:48px;">
-            <h2 style="color:#667eea;margin-bottom:28px;font-size:2em;font-weight:600;">🔥 Featured Story</h2>
-            <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;">
-                <div>
-                    <h3 style="color:#333;font-size:1.6em;margin-bottom:16px;font-weight:600;">AI Revolutionizes Global News Industry</h3>
-                    <p style="color:#666;line-height:1.7;margin-bottom:20px;font-size:1.05em;">
-                        Artificial intelligence is transforming how we consume and understand news. 
-                        New summarization technologies are making it easier than ever to stay informed 
-                        in our fast-paced world.
-                    </p>
-                    <span style="color:#888;font-size:0.95em;">TechCrunch • 2 hours ago</span>
+    <!-- Search Bar -->
+    <div style="background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(102,126,234,0.15);padding:24px;margin-bottom:40px;">
+        <form method="GET" action="{{ route('home') }}" style="display:flex;gap:12px;align-items:center;">
+            <input 
+                type="text" 
+                name="search" 
+                value="{{ request('search') }}" 
+                placeholder="🔍 Search news by title or keywords..." 
+                style="flex:1;padding:14px 20px;border:2px solid #e5e7eb;border-radius:8px;font-size:1em;outline:none;transition:border 0.2s;"
+                onfocus="this.style.borderColor='#667eea'"
+                onblur="this.style.borderColor='#e5e7eb'"
+            >
+            <button 
+                type="submit" 
+                style="background:#667eea;color:white;padding:14px 32px;border:none;border-radius:8px;font-weight:600;cursor:pointer;transition:background 0.2s;"
+                onmouseover="this.style.background='#5568d3'"
+                onmouseout="this.style.background='#667eea'"
+            >
+                Search
+            </button>
+            @if(request('search'))
+                <a 
+                    href="{{ route('home') }}" 
+                    style="background:#f3f4f6;color:#667eea;padding:14px 24px;border-radius:8px;text-decoration:none;font-weight:600;"
+                >
+                    Clear
+                </a>
+            @endif
+        </form>
+    </div>
+
+    <!-- Category Filter -->
+    <div style="margin-bottom:28px; text-align:center;">
+        @foreach (['All', 'Tech', 'Sports', 'Politics', 'Health', 'Education'] as $cat)
+            <a href="{{ request()->fullUrlWithQuery(['category' => $cat]) }}"
+               style="display:inline-block;margin:0 8px 8px 0;padding:10px 22px;border-radius:20px;
+               font-weight:500;text-decoration:none;
+               background:{{ request('category', 'All') === $cat ? '#667eea' : '#f3f4f6' }};
+               color:{{ request('category', 'All') === $cat ? '#fff' : '#667eea' }};
+               box-shadow:0 2px 6px #667eea11;transition:background 0.2s;">
+               {{ $cat }}
+            </a>
+        @endforeach
+    </div>
+
+    <!-- Latest Headlines News Grid -->
+    <h2 style="color:#667eea;margin-bottom:24px;font-size:1.8em;">📌 Latest Headlines</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-bottom:40px;">
+        @forelse ($newsItems as $news)
+            <div style="background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(102,126,234,0.1);padding:20px;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;" 
+                 onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 16px rgba(102,126,234,0.2)';" 
+                 onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 2px 8px rgba(102,126,234,0.1)';">
+                <h3 style="color:#667eea;margin-bottom:12px;font-size:1.1em;">{{ $news->title }}</h3>
+                <div style="font-size:0.95em;color:#10b981;margin-bottom:8px;">
+                    <strong>{{ $news->category }}</strong>
                 </div>
-                <div style="background:#f3f4f6;border-radius:12px;height:280px;display:flex;align-items:center;justify-content:center;">
-                    <span style="color:#999;font-size:1.3em;">📰 Featured Image</span>
+                <p style="color:#666;margin-bottom:12px;line-height:1.5;">{{ $news->excerpt }}</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:0.9em;color:#888;">{{ $news->source }}</span>
+                    <span style="font-size:0.85em;color:#aaa;">{{ $news->published_at->diffForHumans() }}</span>
                 </div>
             </div>
-        </div>
-
-        <!-- Latest Headlines -->
-        <h2 style="color:#667eea;margin-bottom:28px;font-size:2em;font-weight:600;">📌 Latest Headlines</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px;margin-bottom:48px;">
-            @foreach ([
-                ['title' => 'Bangladesh Economy Shows Strong Growth', 'excerpt' => 'Latest reports indicate positive economic indicators across multiple sectors.', 'source' => 'The Daily Star', 'time' => '3 hours ago'],
-                ['title' => 'Global Climate Summit Reaches Agreement', 'excerpt' => 'World leaders commit to ambitious carbon reduction targets.', 'source' => 'BBC News', 'time' => '5 hours ago'],
-                ['title' => 'Tech Giants Announce AI Partnership', 'excerpt' => 'Major technology companies join forces to advance artificial intelligence research.', 'source' => 'Reuters', 'time' => '6 hours ago'],
-                ['title' => 'Sports: Cricket World Cup Update', 'excerpt' => 'Exciting matches continue as teams compete for championship glory.', 'source' => 'ESPN', 'time' => '8 hours ago'],
-                ['title' => 'New Healthcare Initiative Launched', 'excerpt' => 'Government announces nationwide program to improve medical services.', 'source' => 'Health Today', 'time' => '10 hours ago'],
-                ['title' => 'Education Reform Plans Unveiled', 'excerpt' => 'Ministry of Education reveals comprehensive plans for curriculum changes.', 'source' => 'Education Weekly', 'time' => '12 hours ago'],
-            ] as $news)
-                <div style="background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(102,126,234,0.1);padding:24px;transition:all 0.3s;cursor:pointer;" 
-                     onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 24px rgba(102,126,234,0.18)';" 
-                     onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 2px 10px rgba(102,126,234,0.1)';">
-                    <h3 style="color:#667eea;margin-bottom:14px;font-size:1.15em;font-weight:600;">{{ $news['title'] }}</h3>
-                    <p style="color:#666;margin-bottom:16px;line-height:1.6;font-size:0.98em;">{{ $news['excerpt'] }}</p>
-                    <div style="display:flex;justify-content:space-between;align-items:center;">
-                        <span style="font-size:0.9em;color:#888;font-weight:500;">{{ $news['source'] }}</span>
-                        <span style="font-size:0.85em;color:#aaa;">{{ $news['time'] }}</span>
-                    </div>
-                </div>
-            @endforeach
-        </div>
+        @empty
+            <div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">
+                @if(request('search'))
+                    No news found for "{{ request('search') }}". Try a different search term.
+                @else
+                    No news available in this category.
+                @endif
+            </div>
+        @endforelse
     </div>
 </div>
 @endsection
