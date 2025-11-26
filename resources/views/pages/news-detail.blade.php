@@ -13,6 +13,7 @@
     <div style="margin-bottom:32px;">
         <span style="background:#667eea;color:white;padding:6px 16px;border-radius:20px;font-size:0.9em;font-weight:600;">
             {{ $news->category }}
+            
         </span>
         <h1 style="color:#333;margin:20px 0;font-size:2.5em;line-height:1.2;">{{ $news->title }}</h1>
         <div style="display:flex;gap:20px;color:#888;font-size:0.95em;margin-bottom:24px;">
