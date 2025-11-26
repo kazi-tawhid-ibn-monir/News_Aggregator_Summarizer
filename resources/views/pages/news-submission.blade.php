@@ -4,5 +4,6 @@
     <div class="container">
         <h1>News Submission</h1>
         <p>Latest news from your country and region.</p>
+        <p>Stay informed with updates on news submissions, editorial guidelines, and contribution stories.</p>
     </div>
 @endsection
