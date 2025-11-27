@@ -63,6 +63,31 @@ class NewsSeeder extends Seeder
             'source' => 'Education Weekly',
             'published_at' => Carbon::now()->subHours(12),
         ]);
-        
+        News::create([
+            'title' => 'ঢাকায় নতুন মেট্রো রেল স্টেশন চালু',
+            'excerpt' => 'মেট্রো রেল এখন আরও বেশি এলাকায় সেবা দিচ্ছে।',
+            'content' => 'পুরো খবরের বিস্তারিত টেক্সট এখানে থাকবে...',
+            'category' => 'Bangladesh',
+            'source' => 'প্রথম আলো',
+            'published_at' => Carbon::now()->subHours(3),
+        ]);
+
+        News::create([
+            'title' => 'চট্টগ্রামে বন্দর এলাকায় যানজট কমাতে নতুন উদ্যোগ',
+            'excerpt' => 'বন্দর এলাকার রাস্তা সংস্কার ও নতুন সিগন্যাল চালু করা হয়েছে।',
+            'content' => 'Local traffic development news...',
+            'category' => 'Local',
+            'source' => 'কালের কণ্ঠ',
+            'published_at' => Carbon::now()->subHours(6),
+        ]);
+
+        News::create([
+            'title' => 'রাজশাহীতে আমের বাম্পার ফলন',
+            'excerpt' => 'চাষীরা এবার ভালো দামে আম বিক্রির আশা করছেন।',
+            'content' => 'Mango production news...',
+            'category' => 'Bangladesh',
+            'source' => 'সমকাল',
+            'published_at' => Carbon::now()->subHours(8),
+        ]);
     }
 }
