@@ -6,4 +6,7 @@
         <p>Latest news from your country and region.</p>
         <p>Stay informed with updates on news submissions, editorial guidelines, and contribution stories.</p>
     </div>
+    <div id="news-submission-app">
+        <news-submission-component></news-submission-component>
+    </div>
 @endsection
