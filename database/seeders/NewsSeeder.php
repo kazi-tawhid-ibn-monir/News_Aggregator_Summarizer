@@ -63,5 +63,6 @@ class NewsSeeder extends Seeder
             'source' => 'Education Weekly',
             'published_at' => Carbon::now()->subHours(12),
         ]);
+        
     }
 }
