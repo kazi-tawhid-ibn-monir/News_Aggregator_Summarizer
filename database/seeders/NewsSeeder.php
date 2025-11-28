@@ -89,5 +89,49 @@ class NewsSeeder extends Seeder
             'source' => 'সমকাল',
             'published_at' => Carbon::now()->subHours(8),
         ]);
+        News::create([
+            'title' => 'US Election Results Announce New President',
+            'excerpt' => 'Historic election concludes with major policy implications.',
+            'content' => 'The United States has elected a new president following a closely contested election campaign that drew global attention...',
+            'category' => 'International',
+            'source' => 'Reuters',
+            'published_at' => Carbon::now()->subHours(1),
+        ]);
+
+        News::create([
+            'title' => 'European Union Strengthens Trade Agreements',
+            'excerpt' => 'New bilateral trade deals boost economic cooperation.',
+            'content' => 'The European Union has finalized new trade agreements with several Asian nations, marking a significant shift in global trade dynamics...',
+            'category' => 'World',
+            'source' => 'AP News',
+            'published_at' => Carbon::now()->subHours(4),
+        ]);
+
+        News::create([
+            'title' => 'Japan Launches New Space Mission',
+            'excerpt' => 'Ambitious satellite project aims for Mars exploration.',
+            'content' => 'Japan has successfully launched its latest space mission, which aims to gather critical data about Mars and prepare for future manned missions...',
+            'category' => 'International',
+            'source' => 'Space.com',
+            'published_at' => Carbon::now()->subHours(7),
+        ]);
+
+        News::create([
+            'title' => 'India-Pakistan Relations Show Improvement',
+            'excerpt' => 'Diplomatic talks lead to mutual cooperation agreements.',
+            'content' => 'After weeks of intense diplomatic negotiations, India and Pakistan have reached several mutual cooperation agreements in trade and energy sectors...',
+            'category' => 'World',
+            'source' => 'DW',
+            'published_at' => Carbon::now()->subHours(9),
+        ]);
+
+        News::create([
+            'title' => 'UN Climate Report Calls for Urgent Action',
+            'excerpt' => 'Scientists warn of critical climate tipping points.',
+            'content' => 'A comprehensive UN report has warned that the world is approaching critical climate tipping points that could trigger irreversible environmental damage...',
+            'category' => 'International',
+            'source' => 'UN News',
+            'published_at' => Carbon::now()->subHours(11),
+        ]);
     }
 }

@@ -38,5 +38,13 @@ Route::get('/local-news', function () {
                     ->get();
     return view('pages.local-news', compact('localNews'));
 })->name('local-news');
+// International News
+Route::get('/international-news', function () {
+    $internationalNews = \App\Models\News::where('category', 'International')
+                            ->orWhere('category', 'World')
+                            ->latest('published_at')
+                            ->get();
+    return view('pages.international-news', compact('internationalNews'));
+})->name('international-news');
 
 
