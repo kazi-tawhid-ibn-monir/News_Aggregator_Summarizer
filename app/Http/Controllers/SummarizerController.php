@@ -14,70 +14,88 @@ class SummarizerController extends Controller
         ]);
     }
 
-   public function summarize(Request $request)
-   {
-    $request->validate([
-        'text' => 'required|string|min:20',
-    ]);
-
-    $text = $request->input('text');
-
-    try {
-        // Read config from .env
-        $apiUrl = config('services.summarizer.url');
-        $apiKey = config('services.summarizer.key');
-
-        if (!$apiUrl || !$apiKey) {
-            $summary = $this->localFallbackSummary($text);
-
-            return back()
-                ->withInput()
-                ->with('summary', $summary);
+    public function summarize(Request $request)
+    {
+        // Step 1: Clear button pressed?
+        if ($request->has('clear')) {
+            return back()->with('summary', null)->withInput([]);
         }
 
-        $response = Http::withHeaders([
+        // Step 2: Validation
+        $request->validate([
+            'text' => 'required|string|min:20',
+        ]);
+
+        $text = $request->input('text');
+
+        try {
+            // Step 3: API config
+            $apiUrl = config('services.summarizer.url');
+            $apiKey = config('services.summarizer.key');
+
+            // Step 4: Fallback if API missing
+            if (!$apiUrl || !$apiKey) {
+                $summary = $this->localFallbackSummary($text);
+                return back()->withInput()->with('summary', $summary);
+            }
+
+            // Step 5: Make API Request
+            $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $apiKey,
                 'Accept'        => 'application/json',
-            ])
-            ->post($apiUrl, [
-                'text' => $text,
-                'length' => 'short',
+            ])->post($apiUrl, [
+                'inputs' => $text,
             ]);
 
-        if ($response->failed()) {
-            return back()
-                ->withInput()
-                ->with('error', 'Summarization API request failed. Please try again later.');
+            if ($response->failed()) {
+                return back()->withInput()->with('error', 'API request failed.');
+            }
+
+            $data = $response->json();
+
+            // Step 6: UNIVERSAL RESPONSE PARSER
+            $summary = null;
+
+            // Format A
+            if (isset($data[0]['summary_text'])) {
+                $summary = $data[0]['summary_text'];
+            }
+
+            // Format B
+            if (!$summary && isset($data[0]['generated_text'])) {
+                $summary = $data[0]['generated_text'];
+            }
+
+            // Format C
+            if (!$summary && isset($data['summary'])) {
+                $summary = $data['summary'];
+            }
+
+            // Format D
+            if (!$summary && isset($data['generated_text'])) {
+                $summary = $data['generated_text'];
+            }
+
+            // Still no summary?
+            if (!$summary) {
+                return back()->withInput()->with('error', 'API did not return a valid summary.');
+            }
+
+            return back()->withInput()->with('summary', $summary);
+
+        } catch (\Exception $e) {
+            return back()->withInput()->with('error', 'API Error: ' . $e->getMessage());
+        }
+    }
+
+    protected function localFallbackSummary(string $text): string
+    {
+        $sentences = preg_split('/(?<=[.?!])\s+/', trim($text));
+        if (!$sentences) {
+            return 'Could not generate a summary from the provided text.';
         }
 
-        $data = $response->json();
-        $summary = $data['summary'] ?? null;
-
-        if (!$summary) {
-            return back()
-                ->withInput()
-                ->with('error', 'The AI API did not return a valid summary.');
-        }
-
-        // Step 7: Success → send summary to UI
-        return back()
-            ->withInput()
-            ->with('summary', $summary);
-
-    } catch (\Exception $e) {
-        return back()
-            ->withInput()
-            ->with('error', 'Something went wrong while calling the AI API.');
+        $summarySentences = array_slice($sentences, 0, 3);
+        return implode(' ', $summarySentences);
     }
-}
-protected function localFallbackSummary(string $text): string
-{
-    $sentences = preg_split('/(?<=[.?!])\s+/', trim($text));
-    if (!$sentences) {
-        return 'Could not generate a summary from the provided text.';
-    }
-
-    $summarySentences = array_slice($sentences, 0, 3);
-    return implode(' ', $summarySentences);
-}
 }

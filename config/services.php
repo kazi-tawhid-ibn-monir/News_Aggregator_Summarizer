@@ -40,9 +40,10 @@ return [
 
     // ...
 
-    'summarizer' => [
-        'url' => env('SUMMARIZER_API_URL'),
-        'key' => env('SUMMARIZER_API_KEY'),
-    ],
+   'summarizer' => [
+    'url' => env('SUMMARIZER_API_URL'),
+    'key' => env('SUMMARIZER_API_KEY'),
+],
+
 
 ];

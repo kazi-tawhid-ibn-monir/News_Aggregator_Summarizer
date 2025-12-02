@@ -44,9 +44,10 @@
                     <button type="submit" class="summarizer-button-primary">
                         Generate Summary
                     </button>
-                    <button type="reset" class="summarizer-button-secondary">
-                        Clear
+                   <button type="submit" name="clear" value="1" class="summarizer-button-secondary">
+                       Clear
                     </button>
+
                 </div>
             </form>
 
