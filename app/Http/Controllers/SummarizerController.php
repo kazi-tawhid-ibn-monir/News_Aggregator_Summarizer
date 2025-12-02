@@ -59,6 +59,7 @@ class SummarizerController extends Controller
                 ->with('error', 'The AI API did not return a valid summary.');
         }
 
+        // Step 7: Success → send summary to UI
         return back()
             ->withInput()
             ->with('summary', $summary);
@@ -68,9 +69,7 @@ class SummarizerController extends Controller
             ->withInput()
             ->with('error', 'Something went wrong while calling the AI API.');
     }
- }
-
-
+}
 protected function localFallbackSummary(string $text): string
 {
     $sentences = preg_split('/(?<=[.?!])\s+/', trim($text));
