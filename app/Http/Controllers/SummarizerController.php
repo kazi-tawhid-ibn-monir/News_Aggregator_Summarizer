@@ -46,6 +46,16 @@ class SummarizerController extends Controller
             ])->post($apiUrl, [
                 'inputs' => $text,
             ]);
+            $response = Http::withHeaders([
+             'Authorization' => 'Bearer ' . $apiKey,
+             'Accept' => 'application/json',
+              ])->post($apiUrl, [
+                   'inputs' => $text
+            ]);
+
+             $data = $response->json();
+            $summary = $data[0]['summary_text'] ?? null;
+
 
             if ($response->failed()) {
                 return back()->withInput()->with('error', 'API request failed.');
