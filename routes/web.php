@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocalNewsController;
 use App\Http\Controllers\SummarizerController;
+use App\Http\Controllers\NewsSubmissionController;
 Route::get('/local-news', [LocalNewsController::class, 'index'])->name('local-news');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -50,4 +51,7 @@ Route::get('/international-news', function () {
 Route::get('/summarizer', [SummarizerController::class, 'index'])->name('summarizer');
 Route::post('/summarizer', [SummarizerController::class, 'summarize'])->name('summarizer.run');
 
+
+Route::get('/news-submission', [NewsSubmissionController::class, 'create'])->name('news-submission');
+Route::post('/news-submission', [NewsSubmissionController::class, 'store'])->name('news-submission.store');
 
